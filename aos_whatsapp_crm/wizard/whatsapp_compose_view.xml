@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="whatsapp_compose_message_view_crm" model="ir.ui.view">
+        <field name="name">whatsapp.compose.message.form</field>
+        <field name="model">whatsapp.compose.message</field>
+        <field name="inherit_id" ref="aos_whatsapp.whatsapp_compose_message_view"/>
+        <field name="arch" type="xml">        	
+            <div name="partner" position="before">
+            	<div name="sales" attrs="{'invisible' : ['|','|',('whatsapp_type', '!=', 'post'),('composition_mode', '!=', 'mass_post'),('model','!=','sale.order')]}">
+                    <group>                      
+                        <label for="crm_ids" string="Leads"/>
+                        <div groups="base.group_user">
+                            <field name="crm_ids" widget="many2many_tags" placeholder="Add orders to notify..."
+                            	attrs="{'invisible' : [('whatsapp_type', '!=', 'post')]}"/>
+                        </div> 
+                    </group>
+                </div>
+                <!-- <field name="whatsapp_numbers"/> -->
+            </div>
+        </field>
+    </record>
+    
+    <record id="action_send_crm_mobile" model="ir.actions.act_window">
+        <field name="name">Send Whatsapp</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">whatsapp.compose.message</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="aos_whatsapp.whatsapp_compose_message_view"/>
+        <field name="context">{'default_composition_mode': 'mass_post'}</field>
+        <field name="target">new</field>
+        <field name="help">This wizard will send message partner with whatsapp</field>
+    	<field name="binding_model_id" ref="crm.model_crm_lead" />
+    </record>
+
+</odoo>

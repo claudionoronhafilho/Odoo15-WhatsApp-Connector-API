@@ -1,0 +1,46 @@
+<odoo>
+
+    <record id="crm_lead_status_send" model="base.automation">
+        <field name="name">Leads Notification by Whatsapp</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(4, ref('crm.field_crm_lead__stage_id'))]"/>
+        <field name="active" eval="True"/>
+        <!-- <field name="filter_pre_domain">[["stage_id","=","draft"]]</field>
+        <field name="filter_domain">[["stage_id","=","sale"]]</field> -->
+        <field name="state">code</field>
+        <field name="code">
+record.send_whatsapp_automatic()
+        </field>
+    </record>
+
+    <record id="crm_lead_update_status" model="mail.template">
+        <field name="name">CRM: Stage Update</field>
+        <field name="subject">Stage Update</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+        <p> Hello *_PARTNER_*,</p>
+        Your lead _NUMBER_ is updated.
+        <br>
+        Kindly refer below link for crm detail.
+        <br>
+        ]]>
+        </field>
+    </record>
+    
+    <record id="crm_leads_multi" model="mail.template">
+        <field name="name">CRM: Leads Multi</field>
+        <field name="subject">Leads Update</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="body_html"><![CDATA[<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;">
+        <p> Hello *_PARTNER_*,</p>
+        Your lead _NUMBER_ is updated.
+        <br>
+        Kindly refer below link for crm detail.
+        <br>
+        ]]>
+        </field>
+    </record>
+    
+    
+</odoo>
