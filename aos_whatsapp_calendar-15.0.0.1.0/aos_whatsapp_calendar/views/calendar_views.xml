@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        
+    <act_window id="whatsapp_composer_message_send_action_mutli"
+        name="Send Whatsapp to attendees"
+        binding_model="calendar.event"
+        res_model="whatsapp.compose.message"
+        view_mode="form"
+        target="new"
+        context="{
+            'default_composition_mode': 'comment',
+            'default_res_id': active_id,
+        }"/>
+
+</odoo>
