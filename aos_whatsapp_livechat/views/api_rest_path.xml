@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="view_api_rest_path_livechat_form" model="ir.ui.view">
+        <field name="name">api.rest.path.form</field>
+        <field name="model">api.rest.path</field>
+        <field name="inherit_id" ref="aos_api_rest.view_api_rest_path_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='settings']" position="after">
+                <group string="Settings for livechat" attrs="{'invisible': [('livechat_active','=',False)]}">
+                    <field name="channel_line"/>
+                </group>
+            </xpath>
+        </field>
+    </record> 
+
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <record id="view_channel_tree_whatsapp_livechat" model="ir.ui.view">
+        <field name="name">mail.channel.whatsapp.form.view</field>
+        <field name="model">mail.channel</field>
+        <field name="inherit_id" ref="mail.mail_channel_view_tree"/>
+        <field name="arch" type="xml">
+        	<field name="name" position="after">
+        		<field name="senderkeyhash"/>
+        		<field name="recipientkeyhash"/>
+        		<!-- <field name="uuid"/> -->
+                <!-- <field name="livechat_active"/> -->
+        	</field>
+        </field>
+    </record>
+    
+    <record id="view_channel_form_whatsapp_livechat" model="ir.ui.view">
+        <field name="name">mail.channel.whatsapp.form.view</field>
+        <field name="model">mail.channel</field>
+        <field name="inherit_id" ref="mail.mail_channel_view_form"/>
+        <field name="arch" type="xml">
+        	<field name="group_ids" position="after">
+        		<field name="senderkeyhash"/>
+        		<field name="recipientkeyhash"/>
+        		<!-- <field name="uuid"/> -->
+                <!-- <field name="livechat_active"/> -->
+                <!-- <field name="path_id"/> -->
+        	</field>
+        </field>
+    </record>
+
+    <record id="view_message_form_whatsapp_livechat" model="ir.ui.view">
+        <field name="name">mail.message.whatsapp.form.view</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.mail_message_view_form"/>
+        <field name="arch" type="xml">
+        	<field name="partner_ids" position="after">
+        		<field name="whatsapp_numbers"/>
+        	</field>
+        </field>
+    </record>
+    
+
+</odoo>
